@@ -1,0 +1,96 @@
+<div *ngIf="router.url !== '/login' && router.url !== '/sign-up'" class="main-wrap">
+  <div class="example-container">
+    <div class="side-content-wrap">
+      <button class="header-button header-button-mobile" type="button" mat-button (click)="menuOpen = !menuOpen; menuOpenFixed = !menuOpenFixed">
+        <i class="material-icons">
+          menu
+        </i>
+      </button>
+      <div class="input-wrap">
+        <input class="search" placeholder="Search..." type="text">
+      </div>
+      <div class="side-menu" (mouseenter)="menuOpenFixed ? '' : (menuOpen = !true)" (mouseleave)="menuOpenFixed ? '' : (menuOpen = !false)"
+        [ngClass]="{'active': menuOpen === true}">
+
+        <div class="menu-header">
+          <span *ngIf="menuOpen !== true" class="fs-20 fw-600">
+            Company Name
+          </span>
+        </div>
+        <div [ngClass]="{'p-0': menuOpen === true}" class="menu-list" fxLayout="column" fxLayoutGap="0px">
+          <div routerLink="/" [routerLinkActive]="['active']" class="menu-item" fxLayout="row" fxLayoutGap="20px"
+            fxLayoutAlign="start center">
+            <i class="material-icons fs-30">
+              home
+            </i>
+            <span class="fs-14">
+              Dashboard
+            </span>
+          </div>
+          <div class="menu-item" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+            <i class="material-icons fs-30">
+              local_grocery_store
+            </i>
+            <span class="fs-14">
+              Orders
+            </span>
+          </div>
+          <div class="menu-item" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+            <i class="material-icons fs-30">
+              <img width="30px" src="assets/icons/svg/box.svg" alt="">
+            </i>
+            <span class="fs-14">
+              Product
+            </span>
+          </div>
+          <div class="menu-item" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+            <i class="material-icons fs-30">
+              <img width="30px" src="assets/icons/svg/dropbox-logo.svg" alt="">
+            </i>
+            <span class="fs-14">
+              Inventory
+            </span>
+          </div>
+          <div class="menu-item" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+            <i class="material-icons fs-30">
+              <img width="30px" src="assets/icons/svg/3d-printing-software.svg" alt="">
+            </i>
+            <span class="fs-14">
+              Reports
+            </span>
+          </div>
+          <div class="menu-item" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+            <i class="material-icons fs-30">
+              <img width="30px" src="assets/icons/svg/settings.svg" alt="">
+            </i>
+            <span class="fs-14">
+              Setting
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-toolbar class="header" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <div class="user-name">
+        Welcome User
+      </div>
+      <div class="c-p" routerLink="/login" >
+        <img width="20px" src="assets/icons/svg/logout.svg" alt="">
+      </div>
+    </mat-toolbar>
+
+    <div [ngClass]="{'active': !menuOpen && menuOpenFixed}" class="main-content-wrap">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="router.url === '/login'" class="full-height">
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="router.url === '/sign-up'" class="full-height">
+  <router-outlet></router-outlet>
+</div>
